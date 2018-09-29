@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>审核文件</title>
+	
+	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker3.css">
+	<script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-datepicker.zh-CN.min.js" charset="UTF-8"></script>
+
+	<style>
+
+
+h3 {
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.container {
+  max-width: 970px;
+}
+
+div[class*='col-'] {
+  padding: 0 30px;
+}
+
+.wrap {
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+a:focus,
+a:hover,
+a:active {
+  outline: 0;
+  text-decoration: none;
+}
+
+.panel {
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #fff;
+  background: none;
+  box-shadow: none;
+}
+
+.panel:last-child {
+  border-bottom: none;
+}
+
+.panel-group > .panel:first-child .panel-heading {
+  border-radius: 4px 4px 0 0;
+}
+
+.panel-group .panel {
+  border-radius: 0;
+}
+
+.panel-group .panel + .panel {
+  margin-top: 0;
+}
+
+.panel-heading {
+  background-color: #009688;
+  border-radius: 0;
+  border: none;
+  color: #fff;
+  padding: 0;
+}
+
+.panel-title a {
+  display: block;
+  color: #fff;
+  padding: 15px;
+  position: relative;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.panel-body {
+  background: #fff;
+}
+
+.panel:last-child .panel-body {
+  border-radius: 0 0 4px 4px;
+}
+
+.panel:last-child .panel-heading {
+  border-radius: 0 0 4px 4px;
+  -webkit-transition: border-radius 0.3s linear 0.2s;
+  transition: border-radius 0.3s linear 0.2s;
+}
+
+.panel:last-child .panel-heading.active {
+  border-radius: 0;
+  -webkit-transition: border-radius linear 0s;
+  transition: border-radius linear 0s;
+}
+/* #bs-collapse icon scale option */
+
+.panel-heading a:before {
+  content: '\e146';
+  position: absolute;
+  font-family: 'Material Icons';
+  right: 5px;
+  top: 10px;
+  font-size: 24px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.panel-heading.active a:before {
+  content: ' ';
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+#bs-collapse .panel-heading a:after {
+  content: ' ';
+  font-size: 24px;
+  position: absolute;
+  font-family: 'Material Icons';
+  right: 5px;
+  top: 10px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#bs-collapse .panel-heading.active a:after {
+  content: '\e909';
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+/* #accordion rotate icon option */
+
+#accordion .panel-heading a:before {
+  content: '\e316';
+  font-size: 24px;
+  position: absolute;
+  font-family: 'Material Icons';
+  right: 5px;
+  top: 10px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#accordion .panel-heading.active a:before {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+	</style>
+  </head>
+  
+  <body style="background:#ffffff">
+
+
+	<div class="form-group" style="height:80px;background:#12491824">
+	  <input id="excel" style="float:left" type="file" class="form-control-file" id="excel-input"/>
+	  <input id="date" data-provide="datepicker" placeholder="请选择日期"/>
+	  <button id="beginHandle" class="btn btn-primary" style="float:right">开始校验Excel</button>
+	</div>
+
+
+
+
+	<div class="col-md-12 col-sm-12">
+		
+		<div id="printStackTrace" class="panel-group wrap" id="bs-collapse">
+			<div class="alert alert-info">
+				结果将在这里展示
+			</div>
+
+		</div>
+		<!-- end of #bs-collapse  -->
+	</div>
+	<script>
+	$(document).ready(function(){
+		$('#date').datepicker({
+			format:"yyyy-mm-dd",
+		});
+
+		$("#beginHandle").click(function(){
+			var date = $("#date").val();
+			$file = $("#excel");
+
+			if($file[0].files[0] == undefined){
+				iziToast.show({
+					title: '文件为空',
+					message: '请选择文件',
+					color:'red',
+					layout:1,
+					timeout:10000,
+					position:'topRight',
+					
+					onClose: function () {
+						
+					}
+				});
+			}else{
+				$("#printStackTrace").html("<div class='alert alert-success'>正在处理中。。。。。。。。</div>");
+				
+				var formdata = new FormData();
+				formdata.append("date",date);
+				formdata.append("file",$file[0].files[0]);
+				
+				setTimeout(function () { 
+					$.ajax({
+						url:"auditor/excelHandler",
+						data:formdata,
+						async:false,
+						method:'post',
+						processData: false,
+						contentType : false,
+						success:function(data){
+							
+								data= JSON.parse(data);
+								showStackTrace(data);
+							
+						},
+						error:function(e){
+							console.log(e);
+							iziToast.show({
+								title: '失败',
+								message: '服务器端错误，'+e.statusText,
+								color:'red',
+								layout:1,
+								timeout:20000,
+								position:'topRight',
+								
+								onClose: function () {
+									
+								}
+							});
+						}
+					});
+				}, 5000);
+				 
+				
+				
+			}
+
+			
+		});
+
+	});
+	function showStackTrace(data){
+		
+		$("#printStackTrace").html("");
+		var html = "";
+		if(data.length == 0){
+			html = "<div class='alert alert-secondary'>"+excel所有记录都符合规则+"</div>";
+		}else{
+		
+		
+			for(var i = 0;i<data.length;i++){
+	
+				if(data[i].stackTrace.length == 0){
+					continue;
+				}
+					html+='<div class="panel">';
+					html+='	<div class="panel-heading">';
+					html+='		<h4 class="panel-title">';
+					html+='			<a data-toggle="collapse" data-parent="#" href="#stackTrace'+i+'">';
+					html+='				第'+data[i].loanApplication.lineNumberInExcel+'行---申报号码：'+data[i].loanApplication.applicationNumber+"（如果需要在此显示更多信息，请联系开发者）";
+					html+='			</a>';
+					html+='		</h4>';
+					html+='	</div>';
+					html+='	<div id="stackTrace'+i+'" class="panel-collapse collapse">';
+					html+='		<div class="panel-body">';
+					html+='			<ul>';
+				
+				
+				
+					for(var j = 0;j<data[i].stackTrace.length;j++){
+						html+='			<li>'+data[i].stackTrace[j]+'</li>';
+		
+						
+					}
+					html+='			</ul>';
+					html+='		</div>';
+					html+='	</div>';
+					html+='</div>';
+				
+			}
+		}
+		$("#printStackTrace").append(html);
+		
+	}
+	</script>
+  </body>
+</html>
