@@ -50,13 +50,5 @@ public class AuditorController {
 
 
     }
-    @RequestMapping("tt")
-    public void what(HttpServletRequest request, HttpServletResponse response){
-        try{
-            response.getWriter().write("haha");
-        } catch (Exception e){
-            e.printStackTrace();
-        }
 
-    }
 }

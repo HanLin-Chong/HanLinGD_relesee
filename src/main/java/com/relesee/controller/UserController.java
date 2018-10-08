@@ -35,7 +35,7 @@ public class UserController {
 
                 try {
                     logger.info("客户经理"+user.getUserId()+":"+user.getUserName()+"重定向至客户经理页");
-                    response.sendRedirect("../CustomerManager.jsp");
+                    request.getRequestDispatcher("../CustomerManager.jsp").forward(request,response);
                 } catch (Exception e) {
                     logger.fatal("客户经理"+user.getUserId()+":"+user.getUserName()+"重定向至客户经理页出错:(详细信息)"+
                             e.getMessage()+"(原因)"+e.getCause()+"(stackTrace)"+e.getStackTrace());
@@ -45,7 +45,8 @@ public class UserController {
                 logger.info("审核员"+user.getUserId()+":"+user.getUserName()+"登录系统");
                 try {
                     logger.info("审核员"+user.getUserId()+":"+user.getUserName()+"重定向至审核员页");
-                    response.sendRedirect("../Auditor.jsp");
+                    request.getRequestDispatcher("../Auditor.jsp").forward(request,response);
+                    //response.sendRedirect("../Auditor.jsp");
                 } catch (Exception e){
                     logger.fatal("审核员"+user.getUserId()+":"+user.getUserName()+"重定向至审核员页出错:(详细信息)"+
                             e.getMessage()+"(原因)"+e.getCause()+"(stackTrace)"+e.getStackTrace());
