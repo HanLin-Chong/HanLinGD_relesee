@@ -15,17 +15,19 @@ import com.relesee.excel.rules.Handler;
  */
 public class RuleGen4 extends Rule {
 	
-	private static final String[] ILLEGAL_STRING = {"EXCHANGE","BANK","ROOM","ADD","1/","exchange","bank","room","add"};
+	private static final String[] ILLEGAL_STRING = {"EXCHANGE","BANK","ROOM","ADD","1/","exchange","bank","room","add","insurance","health"};
 
 	public static void doHandle() {
 		
 		String name = record.getDraweeName();
 		name = name.trim();
-		
+		name = StringUtils.lowerCase(name);
+
 		if(StringUtils.isNotBlank(name)){
 			String outPutToStackTrace = "";
 			//判断是否包含非法字符
 			for(String illegal:ILLEGAL_STRING){
+				illegal = StringUtils.lowerCase(illegal);
 				if(name.contains(illegal)){
 					outPutToStackTrace += "（"+illegal+"）";
 				}
