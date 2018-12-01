@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface AuditorService {
 
-    public List<IllegalLoanApplicationDO> handleExcel(MultipartFile file, HttpServletRequest request);
+    List<IllegalLoanApplicationDO> handleExcel(MultipartFile file, HttpServletRequest request);
 }

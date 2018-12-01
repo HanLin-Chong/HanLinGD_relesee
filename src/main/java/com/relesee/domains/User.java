@@ -1,16 +1,15 @@
 package com.relesee.domains;
 
-import java.io.Serializable;
 
-public class User implements Serializable {
+import org.springframework.stereotype.Component;
 
-
-
+@Component
+public class User {
     private String userName;
     private String password;
     private String userId;
     private String eMail;
-    private short authority;
+    private String role;
     private String userState;
     private String phone;
     private String headPhoto;
@@ -48,12 +47,12 @@ public class User implements Serializable {
         this.eMail = eMail;
     }
 
-    public short getAuthority() {
-        return authority;
+    public String getRole() {
+        return role;
     }
 
-    public void setAuthority(short authority) {
-        this.authority = authority;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getUserState() {

@@ -2,6 +2,7 @@ package com.relesee.controller;
 
 import com.relesee.domains.User;
 import com.relesee.service.UserService;
+import com.relesee.service.impl.UserServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -21,6 +23,27 @@ public class UserController {
     private static final Logger logger = Logger.getLogger(UserController.class);
 
     @RequestMapping("login")
+    public void userLogin(User user, HttpSession session, HttpServletResponse response){
+
+        boolean isUser = userService.UserLogin(session, user);
+        try {
+            if (isUser){
+                response.getWriter().write("1");
+            } else {
+                response.getWriter().write("0");
+            }
+        } catch (Exception e){
+            logger.fatal("返回登录结果时出错",e);
+        }
+    }
+
+    @RequestMapping("distribute")
+    public void userLogin(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+        User user = (User) session.getAttribute("user");
+        System.out.println(user.getUserName());
+    }
+
+    /*
     public void userLogin(User user, HttpServletRequest request, HttpServletResponse response){
         //在spring-applicationcontext/domains.xml中配置了user模型,spring将请求中的参数自动封装为user
 
@@ -66,5 +89,5 @@ public class UserController {
 
 
     }
-
+    */
 }

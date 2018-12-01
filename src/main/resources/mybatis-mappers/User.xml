@@ -6,9 +6,9 @@
 <mapper namespace="com.relesee.dao.UserDao">
     <select id="selectUserById" parameterType="java.lang.String" resultType="com.relesee.domains.User">
         SELECT
-          username,password,userid,email,authority,userstate,phone,headphoto,deptid
+          username,password,userid,email,role,userstate,phone,headphoto,deptid
         FROM
-          users
+          user
         WHERE
           userid=#{userId}
     </select>

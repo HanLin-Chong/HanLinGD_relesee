@@ -4,5 +4,5 @@ import com.relesee.domains.User;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserDao {
-    public User selectUserById(String userId);
+    User selectUserById(String userId);
 }
