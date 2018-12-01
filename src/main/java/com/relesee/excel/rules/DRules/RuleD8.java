@@ -1,16 +1,17 @@
 package com.relesee.excel.rules.DRules;
 
 import com.relesee.excel.rules.Handler;
+import com.relesee.excel.rules.Rule;
+
 /**
  * 原规则：交易编码1（Y）为121010时，交易附言1（AA）为“收到境内非居民款项一般贸易货款”或“一般贸易货款”不能有空格要完全匹配
  * 此规则现已被
  * @author HanLin
  *
  */
-public class RuleD8 extends Handler{
+public class RuleD8 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		
 		String code = record.getTradingCode1();
 		String script = record.getTradingPostScript1();

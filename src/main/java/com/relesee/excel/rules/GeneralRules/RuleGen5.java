@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.GeneralRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -10,10 +11,9 @@ import com.relesee.excel.rules.Handler;
  * @author HanLin
  *
  */
-public class RuleGen5 extends Handler{
+public class RuleGen5 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		String bussinessNumber = record.getBussinessNumber();
 		String settlementMethod = record.getSettlementMethod();
 		if(StringUtils.isNotBlank(bussinessNumber) || StringUtils.isNotBlank(settlementMethod)){
@@ -27,8 +27,7 @@ public class RuleGen5 extends Handler{
 		}
 
 		
-		nextHandler = new RuleGen6();
-		nextHandler.doHandle();
+		RuleGen6.doHandle();
 	}
 
 	

@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.CRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -12,10 +13,10 @@ import com.relesee.excel.rules.Handler;
  * @author HanLin
  *
  */
-public class RuleC2 extends Handler{
+public class RuleC2 extends Rule {
 	
-	@Override
-	public void doHandle() {
+
+	public static void doHandle() {
 		String M = record.getForeignAccount();M = M.trim();
 		String Y = record.getTradingCode1();Y = Y.trim();
 		String AA = record.getTradingPostScript1();AA = AA.trim();
@@ -47,24 +48,8 @@ public class RuleC2 extends Handler{
 			}
 		}
 		
-		
-		nextHandler = new RuleC3();
-		nextHandler.doHandle();
+		RuleC3.doHandle();
+
 	}
-	private boolean isMobileNO(String mobiles) {
-        String telRegex = "[1][3578]\\d{9}";
-        // "[1]"代表第1位为数字1，"[3578]"代表第二位可以为3、5、8中的一个，"\\d{9}"代表后面是可以是0～9的数字，有9位。
-        if (StringUtils.isBlank(mobiles)) {
-            return false;
-        } else
-            return mobiles.matches(telRegex);
-    }
-	private boolean isNumeric(String str){
-	   for (int i = str.length();--i>=0;){  
-	       if (!Character.isDigit(str.charAt(i))){
-	           return false;
-	       }
-	   }
-	   return true;
-	}
+
 }

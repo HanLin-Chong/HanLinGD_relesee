@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.CRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -10,10 +11,9 @@ import com.relesee.excel.rules.Handler;
  *
  */
 
-public class RuleC5 extends Handler{
+public class RuleC5 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		String foreignAccount = record.getForeignAccount();foreignAccount = foreignAccount.trim();
 		
 		/**

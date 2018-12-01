@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.FRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -9,10 +10,9 @@ import com.relesee.excel.rules.Handler;
  * @author HanLin
  *
  */
-public class RuleF1 extends Handler{
+public class RuleF1 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		String passPort = record.getPersonalIdentityNumber();
 		if(StringUtils.isBlank(passPort)){
 			stackTrace.add("（F类规则-1）个人身份证号（护照号）为空");
@@ -20,8 +20,8 @@ public class RuleF1 extends Handler{
 		if(passPort.length()>=18){
 			stackTrace.add("（F类规则-1）个人身份证号（护照号）大于等于18位");
 		}
-		nextHandler = new RuleF2();
-		nextHandler.doHandle();
+		RuleF2.doHandle();
+
 	}
 
 

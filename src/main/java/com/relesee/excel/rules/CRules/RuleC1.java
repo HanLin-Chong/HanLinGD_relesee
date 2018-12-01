@@ -1,6 +1,7 @@
 package com.relesee.excel.rules.CRules;
 
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -10,10 +11,10 @@ import com.relesee.excel.rules.Handler;
  * @author HanLin
  *
  */
-public class RuleC1 extends Handler{
+public class RuleC1 extends Rule {
 
-	@Override
-	public void doHandle() {
+
+	public static void doHandle() {
 		String IDCard = record.getPersonalIdentityNumber();
 		String orgCode = record.getOrganizationCode();
 		orgCode = orgCode.trim();
@@ -25,7 +26,6 @@ public class RuleC1 extends Handler{
 		}
 		
 		
-		nextHandler = new RuleC2();
-		nextHandler.doHandle();
+		RuleC2.doHandle();
 	}
 }

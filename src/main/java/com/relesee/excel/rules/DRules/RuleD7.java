@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.DRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -9,10 +10,9 @@ import com.relesee.excel.rules.Handler;
  * @author HanLin
  *
  */
-public class RuleD7 extends Handler{
+public class RuleD7 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		String tradingCode1 = record.getTradingCode1();
 		String script = record.getTradingPostScript1();
 		long amount = record.getCorrespondingAmount1();
@@ -38,7 +38,7 @@ public class RuleD7 extends Handler{
 			stackTrace.add("（D类规则-7）申报日期为空");
 		}
 		
-		nextHandler = new RuleD8();
-		nextHandler.doHandle();
+		RuleD8.doHandle();
+
 	}
 }

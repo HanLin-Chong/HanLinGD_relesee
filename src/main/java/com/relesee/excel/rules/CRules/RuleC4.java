@@ -3,15 +3,16 @@ package com.relesee.excel.rules.CRules;
 import java.util.Set;
 
 import com.relesee.excel.rules.Handler;
+import com.relesee.excel.rules.Rule;
+
 /**
  * 当外汇账号/银行卡号（M）以NRA开头时，国别和Sheet（已通知）中的匹配
  * @author HanLin
  *
  */
-public class RuleC4 extends Handler{
+public class RuleC4 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		
 		String fac = record.getForeignAccount();fac = fac.trim();
 		String countryCode = record.getDraweeResidentPlaceCode();countryCode = countryCode.trim();
@@ -23,8 +24,7 @@ public class RuleC4 extends Handler{
 			}
 		}
 		
-		nextHandler = new RuleC5();
-		nextHandler.doHandle();
+		RuleC5.doHandle();
 		
 	}
 

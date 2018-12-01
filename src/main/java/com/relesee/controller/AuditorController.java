@@ -27,26 +27,21 @@ public class AuditorController {
     public void excelHandler(FileDO file, HttpServletRequest request, HttpServletResponse response){
         List<IllegalLoanApplicationDO> result = null;
 
-        System.out.println("文件"+file.getFile());
-        System.out.println("文件名"+file.getFile().getName());
-        /*try {
-            logger.info("开始审核excel");
-            result = auditorService.handleExcel(file.getFile(), request);
-        } catch (IOException e) {
-            logger.error("上传Excel出错，详情下一条error");
-            logger.error(e);
-            e.printStackTrace();
-        }*/
+        logger.info("接收excel文件:"+file.getFile().getName()+"("+file.getFile().getSize()+"B)");
+
         result = auditorService.handleExcel(file.getFile(), request);
 
         try{
-            logger.info("Excel审核完成，开始返回结果给前端");
+
             response.getWriter().write(JSON.toJSONString(result));
+            logger.info("Excel审核完成，返回结果给前端");
         } catch (Exception e){
-            logger.error("返回结果出错，详情下一条error");
-            logger.error(e);
+            logger.error("返回结果出错",e);
+
         }
 
+        result.clear();
+        result = null;
 
 
     }

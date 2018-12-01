@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.CRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -10,10 +11,9 @@ import com.relesee.excel.rules.Handler;
  * @author HanLin
  *
  */
-public class RuleC3 extends Handler{
+public class RuleC3 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		String foreignAccount = record.getForeignAccount();
 		foreignAccount = foreignAccount.trim();
 		String tradingCode1 = record.getTradingCode1();
@@ -59,8 +59,8 @@ public class RuleC3 extends Handler{
 			}
 		}
 		
-		nextHandler = new RuleC4();
-		nextHandler.doHandle();
+		RuleC4.doHandle();
+
 	}
 
 }

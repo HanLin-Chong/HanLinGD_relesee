@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import com.relesee.excel.rules.Handler;
+import com.relesee.excel.rules.Rule;
 
 
 /**
@@ -11,10 +12,9 @@ import com.relesee.excel.rules.Handler;
  * @author HanLin
  *
  */
-public class RuleGen3 extends Handler{
+public class RuleGen3 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		
 		long incomeAmount = record.getIncomeAmount();
 
@@ -33,8 +33,8 @@ public class RuleGen3 extends Handler{
 			stackTrace.add("（总规则-3）等式：收入款金额（H）=现汇金额（L）+国内扣费(S)+国外扣费(U)不成立，等式左侧的值为："+df.format(convertLeft)+",等式右侧的值为："+df.format(convertRight));
 		}
 		
-		nextHandler = new RuleGen4();
-		nextHandler.doHandle();
+		RuleGen4.doHandle();
+
 	}
 
 	

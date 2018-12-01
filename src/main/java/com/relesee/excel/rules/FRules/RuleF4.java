@@ -3,6 +3,7 @@ package com.relesee.excel.rules.FRules;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -11,10 +12,9 @@ import com.relesee.excel.rules.Handler;
  * @author HanLin
  *
  */
-public class RuleF4 extends Handler{
-	
-	@Override
-	public void doHandle() {
+public class RuleF4 extends Rule {
+
+	public static void doHandle() {
 		String draweeName = record.getDraweeName();
 		draweeName = draweeName.trim();
 		StringBuffer buffer = new StringBuffer(draweeName);
@@ -59,8 +59,8 @@ public class RuleF4 extends Handler{
 			stackTrace.add("（F类规则-4）没有后缀：[acc:.....]");
 		}
 		
-		nextHandler = new RuleF5();
-		nextHandler.doHandle();
+		RuleF5.doHandle();
+
 	}
 
 

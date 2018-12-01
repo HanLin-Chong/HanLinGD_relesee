@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.FRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -8,10 +9,9 @@ import com.relesee.excel.rules.Handler;
  * @author HanLin
  *
  */
-public class RuleF5 extends Handler{
+public class RuleF5 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		String facc = record.getForeignAccount();
 		facc = facc.trim();
 		String script = record.getTradingPostScript1();
@@ -32,8 +32,8 @@ public class RuleF5 extends Handler{
 		}
 
 		
-		nextHandler = new RuleF6();
-		nextHandler.doHandle();
+		RuleF6.doHandle();
+
 	}
 
 }

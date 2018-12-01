@@ -1,16 +1,17 @@
 package com.relesee.excel.rules.DRules;
 
 import com.relesee.excel.rules.Handler;
+import com.relesee.excel.rules.Rule;
+
 /**
  * 原规则：如果交易附言1（AA）为“收到境内非居民款项一般贸易货款”，则付款人名称（F）前缀为“(JN)”英文括号
  * 此规则已作废，被并入D8规则
  * @author HanLin
  *
  */
-public class RuleD9 extends Handler{
+public class RuleD9 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		String script = record.getTradingPostScript1();
 		script = script.trim();
 		String drawee = record.getDraweeName();
@@ -22,7 +23,7 @@ public class RuleD9 extends Handler{
 		}
 		
 		
-		//nextHandler = new RuleD10();
-		//nextHandler.doHandle();
+		//RuleD10.doHandle();
+
 	}
 }

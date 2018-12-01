@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.DRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -10,9 +11,9 @@ import com.relesee.excel.rules.Handler;
  *
  */
 
-public class RuleD1 extends Handler{
-	@Override
-	public void doHandle() {
+public class RuleD1 extends Rule {
+
+	public static void doHandle() {
 		String idCard = record.getPersonalIdentityNumber();
 		idCard = idCard.trim();
 		if(StringUtils.isNoneBlank(idCard)){
@@ -22,7 +23,6 @@ public class RuleD1 extends Handler{
 		}else{
 			stackTrace.add("（D类规则-1）个人身份证号为空");
 		}
-		nextHandler = new RuleD2();
-		nextHandler.doHandle();
+		RuleD2.doHandle();
 	}
 }

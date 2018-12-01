@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.GeneralRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -13,10 +14,9 @@ import com.relesee.excel.rules.FRules.RuleF1;
  *
  */
 
-public class RuleGen7 extends Handler{
+public class RuleGen7 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		String draweeName = record.getDraweeName();
 		draweeName = draweeName.trim();
 		
@@ -38,16 +38,16 @@ public class RuleGen7 extends Handler{
 			if(StringUtils.isNotBlank(lineClass)){
 				switch (lineClass) {
 					case "C":
-						nextHandler = new RuleC1();
+						RuleC1.doHandle();
 						break;
 					case "D":
-						nextHandler = new RuleD1();
+						RuleD1.doHandle();
 						break;
 					case "F":
-						nextHandler = new RuleF1();
+						RuleF1.doHandle();
 						break;
 				}
-				nextHandler.doHandle();
+
 			}else{
 				stackTrace.add("（总规则-7）收款人类型为空，无法决定使用哪一类规则");
 			}

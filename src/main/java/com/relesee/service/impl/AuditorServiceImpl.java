@@ -6,6 +6,7 @@ import com.relesee.excel.reader.ExcelReader;
 import com.relesee.excel.reader.impl.ExcelReaderImpl;
 import com.relesee.excel.rules.GeneralRules.RuleGen1;
 import com.relesee.excel.rules.Handler;
+import com.relesee.excel.rules.Rule;
 import com.relesee.service.AuditorService;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,8 +21,7 @@ public class AuditorServiceImpl implements AuditorService {
 
     @Override
     public List<IllegalLoanApplicationDO> handleExcel(MultipartFile file, HttpServletRequest request) {
-        System.out.println("开始使用审核员服务");
-        System.out.println("文件名："+file.getName());
+
         List<IllegalLoanApplicationDO> result = new ArrayList<IllegalLoanApplicationDO>();
         ExcelReader reader = null;
         try {
@@ -32,15 +32,15 @@ public class AuditorServiceImpl implements AuditorService {
         List<LoanApplicationDO> workSheet = reader.getDoList();
         Map<String,String> countryMap = reader.countryMap();
         for(LoanApplicationDO tempDO:workSheet){
-            Handler handler = new RuleGen1();
 
-            handler.setInputDate(request.getParameter("date"));
+            Rule.inputDate = request.getParameter("date");
+            Rule.orgCodeAndCountryCodeMap = countryMap;
+            Rule.record = tempDO;
 
-            handler.setOrgCodeAndCopuntryCodeMap(countryMap);
-            handler.setLoanApplicationDO(tempDO);
-            handler.clearStackTrace();
-            handler.doHandle();
-            List<String> list = handler.getStackTrace();
+            Rule.stackTrace.clear();
+            RuleGen1.doHandle();
+
+            List<String> list = Rule.stackTrace;
             if(list.size()>0){
                 IllegalLoanApplicationDO illegalDO = new IllegalLoanApplicationDO();
 

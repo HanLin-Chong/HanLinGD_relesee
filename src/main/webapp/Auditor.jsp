@@ -97,7 +97,7 @@
                   
                   <li class="sidebar-dropdown">
 
-                      <a  href="#" ><i class="fa fa-file"></i><span>NRA模块</span></a>
+                      <a  href="#" ><i class="fa fa-file"></i><span>境外机构申请境内账户-NRA</span></a>
                       <div class="sidebar-submenu">
                           <ul>
                               <li class="pageloder-trigger"  whichpage=""><a href="#">资料管理 </a> </li>
@@ -108,12 +108,9 @@
                       </div>
                   </li>
                   
-                  <li class="pageloder-trigger" whichpage="Auditor_queue_manage.html"><a href="#"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
-                  <li class="pageloder-trigger" whichpage="Auditor_handle_rules.html"><a href="#"><i class="fa fa-eye"></i><span>excel校验</span></a></li>
-                  <!--  <li class="header-menu"><span>Simple menu</span></li>
-                  <li><a href="#"><i class="fa fa-tv"></i><span>用户权限管理</span></a></li>                   
-                  
-                  -->
+                  <li class="pageloder-trigger" whichpage="Auditor_queue_manage.html"><a href="#"><i class="glyphicon glyphicon-user"></i><span>客户经理账户管理</span></a></li>
+                  <li class="pageloder-trigger" whichpage="Auditor_handle_rules.html"><a href="#"><i class="fa fa-eye"></i><span>电商客户境外账户申请</span></a></li>
+                  <li class="pageloder-trigger" whichpage="Auditor_handle_rules.html"><a href="#"><i class="fa fa-eye"></i><span>总台账信息</span></a></li>
 
               </ul>
              </div><!-- sidebar-menu  -->           
@@ -122,7 +119,7 @@
           <div class="sidebar-footer">
               <a id="notifications-trigger" title="消息中心" ><i class="fa fa-bell"></i></a>
               <a id="message_send_and_history_message" title="发送消息"><i class="glyphicon glyphicon-list-alt"></i></a>
-              
+              <a title="状态跟踪"><i class="fa fa-power-off"></i></a>
               <a title="退出当前账号"><i class="fa fa-power-off"></i></a>
           </div>
       </nav><!-- sidebar-wrapper  -->

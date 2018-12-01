@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.GeneralRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -12,18 +13,16 @@ import com.relesee.excel.rules.FRules.RuleF1;
  * @author HanLin
  *
  */
-public class RuleGen6 extends Handler{
+public class RuleGen6 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		
 		String v = record.getCauseOfModificationOrDeletion();
 		if(StringUtils.isNoneBlank(v)){
 			stackTrace.add("（总规则-6）“修改/删除原因”不为空！");
 		}
 		
-		nextHandler = new RuleGen7();
-		nextHandler.doHandle();
+		RuleGen7.doHandle();
 	}
 	
 

@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.GeneralRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -10,9 +11,9 @@ import com.relesee.excel.rules.Handler;
  * @author HanLin
  *
  */
-public class RuleGen2 extends Handler {
-	@Override
-	public void doHandle() {
+public class RuleGen2 extends Rule {
+
+	public static void doHandle() {
 		String incomeCurrency = record.getIncomeCurrency().trim();
 		if("CNY".equals(incomeCurrency)){
 			if(StringUtils.isNotBlank(record.getForeignAccount())){
@@ -23,8 +24,8 @@ public class RuleGen2 extends Handler {
 			}
 		}
 		
-		nextHandler = new RuleGen3();
-		nextHandler.doHandle();
+		RuleGen3.doHandle();
+
 	}
 	
 	

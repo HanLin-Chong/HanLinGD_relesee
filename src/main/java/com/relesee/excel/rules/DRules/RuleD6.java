@@ -1,5 +1,6 @@
 package com.relesee.excel.rules.DRules;
 
+import com.relesee.excel.rules.Rule;
 import org.apache.commons.lang3.StringUtils;
 
 import com.relesee.excel.rules.Handler;
@@ -8,16 +9,14 @@ import com.relesee.excel.rules.Handler;
  * @author HanLin
  *
  */
-public class RuleD6 extends Handler{
+public class RuleD6 extends Rule {
 
-	@Override
-	public void doHandle() {
+	public static void doHandle() {
 		String code = record.getTradingCode1();
 		if(StringUtils.isBlank(code)){
 			stackTrace.add("（D类规则-6）交易编码1为空");
 		}
-		nextHandler = new RuleD7();
-		nextHandler.doHandle();
+		RuleD7.doHandle();
 	}
 
 

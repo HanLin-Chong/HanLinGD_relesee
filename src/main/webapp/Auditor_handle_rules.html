@@ -253,7 +253,7 @@ a:active {
 							});
 						}
 					});
-				}, 5000);
+				}, 100);
 				 
 				
 				
@@ -281,7 +281,7 @@ a:active {
 					html+='	<div class="panel-heading">';
 					html+='		<h4 class="panel-title">';
 					html+='			<a data-toggle="collapse" data-parent="#" href="#stackTrace'+i+'">';
-					html+='				第'+data[i].loanApplication.lineNumberInExcel+'行---申报号码：'+data[i].loanApplication.applicationNumber+"（如果需要在此显示更多信息，请联系开发者）";
+					html+='				第'+data[i].loanApplication.lineNumberInExcel+'行---申报号码：'+data[i].loanApplication.applicationNumber;
 					html+='			</a>';
 					html+='		</h4>';
 					html+='	</div>';
@@ -304,7 +304,19 @@ a:active {
 			}
 		}
 		$("#printStackTrace").append(html);
-		
+		$(".collapse").collapse("show");
+        iziToast.show({
+            title: '提示',
+            message: '你可以点击折叠已经处理完的行',
+            color:'blue',
+            layout:1,
+            timeout:5000,
+            position:'topRight',
+
+            onClose: function () {
+
+            }
+        });
 	}
 	</script>
   </body>
