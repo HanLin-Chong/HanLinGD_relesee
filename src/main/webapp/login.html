@@ -45,6 +45,15 @@
     <div class="col-lg-3 my-layout" style="height: 0px"</div>
 <script>
 $(document).ready(function(e){
+    console.log("开始");
+    $("body").keydown(function() {
+        console.log("keydown");
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            console.log("submit");
+            $("#submit").click();
+        }
+    });
+
     $("#submit").click(function (e) {
 
         var username = $("#username").val();
@@ -71,7 +80,7 @@ $(document).ready(function(e){
                     async:false,
                     method:"post",
                     success:function (response) {
-                        if (response == 1) {
+                        if (response == 1 || response == "1") {
                             window.location.href = "user/distribute";
                         } else {
                             iziToast.show({

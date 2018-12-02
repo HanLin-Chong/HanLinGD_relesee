@@ -22,10 +22,8 @@ public class UserServiceImpl implements UserService {
     public boolean UserLogin(HttpSession session, User user) {
         //账号或密码为空就不通过
         if( StringUtils.isBlank(user.getUserId()) || StringUtils.isBlank(user.getPassword()) ){
-            System.out.println("第一个if");
             return false;
         } else {
-            System.out.println("fuckyou");
             try{
                 User searchedUser = userDao.selectUserById(user.getUserId());
                 //验证账号密码是否一样
